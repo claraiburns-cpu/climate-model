@@ -1,0 +1,62 @@
+# Runs every time changes are pushed to the main branch:
+#   1. runs all automated tests (engine + website) — if any fail, nothing is published;
+#   2. builds the website;
+#   3. publishes it to GitHub Pages.
+name: Test and publish website
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:   # also allows a manual re-run from the Actions tab
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+
+      - name: Engine tests (40)
+        run: npm test
+
+      - name: Install website packages
+        working-directory: web
+        run: npm ci
+
+      - name: Website tests (120)
+        working-directory: web
+        run: npm test
+
+      - name: Build website
+        working-directory: web
+        run: npm run build
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: web/dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

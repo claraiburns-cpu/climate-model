@@ -1,0 +1,16 @@
+# Installed packages and build output (GitHub rebuilds the website itself)
+node_modules/
+web/dist/
+__pycache__/
+.DS_Store
+
+# Kept on this computer only — never uploaded to GitHub:
+# the original course workbook and homework document
+source/
+# local verification scripts (they read the workbook and contain local folder paths)
+tools/
+# local editor settings and the double-click launcher for this computer
+.claude/
+Start Website.command
+# personal presentation notes
+PRESENTATION_REVIEW.md

@@ -1,0 +1,11 @@
+{
+  "name": "classroom-climate-model",
+  "version": "0.2.0",
+  "description": "Calculation engine for the Carbon Trading classroom climate model (Kaya + five-box carbon cycle + two-layer temperature)",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "test": "node --test --test-reporter=spec tests/*.test.js"
+  },
+  "engines": { "node": ">=20" }
+}
