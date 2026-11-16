@@ -2,7 +2,7 @@
 
 An interactive website for a Carbon Trading class project. It shows how population, income growth, energy efficiency and cleaner energy shape CO₂ emissions and global warming through 2100. It runs the course's classroom climate model, built for Homework 5: Kaya emissions → five-box carbon cycle → two-layer temperature model.
 
-**Live website:** the link will be added here after the first publish.
+**Live website: https://claraiburns-cpu.github.io/climate-model/**
 
 Results are model scenarios, not forecasts. Temperatures are measured from the classroom model's 1850 reference, not the Paris Agreement's pre-industrial baseline. See **About the Model** on the website and **MODEL_DOCUMENTATION.md** for details.
 
